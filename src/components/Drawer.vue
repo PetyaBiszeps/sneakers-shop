@@ -1,12 +1,12 @@
 <script setup>
-import {ref, inject, watch, computed} from "vue";
+import {ref, inject, computed} from "vue";
 import axios from "axios";
 
 import DrawerHeader from "@/components/DrawerHeader.vue";
 import CartList from "@/components/CartList.vue";
 import Info from "@/components/Info.vue";
 
-const props = defineProps({totalPrice: Number, CartButtonDisabled: Boolean});
+const props = defineProps({totalPrice: Number, ButtonDisabled: Boolean});
 
 const {cart, closeCart} = inject('cart');
 const isCreating = ref(false);
@@ -31,7 +31,7 @@ const createOrder = async () => {
 </script>
 
 <template>
-  <div class="fixed top-0 left-0 w-full h-full bg-black z-10 opacity-70"></div>
+  <div class="fixed top-0 left-0 w-full h-full bg-black z-10 opacity-70" @click="closeCart"></div>
   <div class="flex flex-col bg-white w-96 h-full fixed top-0 right-0 z-20 p-8">
     <DrawerHeader/>
 

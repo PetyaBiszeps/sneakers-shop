@@ -32,10 +32,10 @@ const fetchItems = async () => {
     const params = {sortBy: filters.sortBy};
 
     if (filters.searchQuery) {
-      params.title = `*${filters.searchQuery}*`;
+      params.title = `${filters.searchQuery}`;
     }
 
-    const {data} = await axios.get(`https://b4cabae473d9d7e2.mokky.dev/items`, {params});
+    const {data} = await axios.get(`https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/items`, {params});
     items.value = data.map(obj => ({
       ...obj,
 
@@ -55,12 +55,12 @@ const addToFavourite = async (item) => {
       const obj = {parentId: item.id, item};
       item.isFavourite = true;
 
-      const {data} = await axios.post('https://b4cabae473d9d7e2.mokky.dev/favourites', obj);
+      const {data} = await axios.post('https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/favourites', obj);
       item.favouriteId = data.id;
     } else {
       item.isFavourite = false;
 
-      await axios.delete(`https://b4cabae473d9d7e2.mokky.dev/favourites/${item.favouriteId}`);
+      await axios.delete(`https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/favourites/${item.favouriteId}`);
       item.favouriteId = null;
     }
   } catch (e) {
@@ -70,7 +70,7 @@ const addToFavourite = async (item) => {
 
 const fetchFavourites = async () => {
   try {
-    const {data: favourites} = await axios.get(`https://b4cabae473d9d7e2.mokky.dev/favourites`);
+    const {data: favourites} = await axios.get(`https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/favourites`);
     items.value = items.value.map(item => {
       const favourite = favourites.find((favourite) => favourite.parentId === item.id);
 

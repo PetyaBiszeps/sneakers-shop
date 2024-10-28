@@ -1,17 +1,17 @@
 <script setup>
 import {watch, ref, provide, computed} from "vue";
-import axios from "axios";
 
 import Header from "@/components/Header.vue";
 import Drawer from "@/components/Drawer.vue";
 
-import Home from "@/pages/home.vue";
+// import Home from "@/pages/Home.vue";
+// import Popup from "@/components/Popup.vue";
 
 const cart = ref([]);
 
 const cartOpen = ref(false);
 
-const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
+const totalPrice = computed(() => parseFloat(cart.value.reduce((acc, item) => acc + item.price, 0).toFixed(2)));
 
 const closeCart = () => {
   cartOpen.value = false;
@@ -45,12 +45,14 @@ provide('cart', {
 </script>
 
 <template>
-  <Drawer v-if="cartOpen" :CartButtonDisabled="CartButtonDisabled" :totalPrice="totalPrice"/>
+  <Drawer v-if="cartOpen" :totalPrice="totalPrice"/>
+
+  <!-- <popup/> -->
 
   <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
     <Header :totalPrice="totalPrice" @openCart="openCart"/>
 
-    <div class="p-10">
+    <div v-if="closeCart" class="p-10">
       <router-view></router-view>
     </div>
   </div>

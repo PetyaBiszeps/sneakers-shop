@@ -2,6 +2,7 @@
 import {inject} from "vue";
 
 const {closeCart} = inject('cart');
+
 </script>
 
 <template>

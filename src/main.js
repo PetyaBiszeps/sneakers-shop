@@ -7,7 +7,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 import {autoAnimatePlugin} from "@formkit/auto-animate/vue";
 
-import Home from "@/pages/home.vue";
+import Home from "@/pages/Home.vue";
 import Favourites from "@/pages/Favourites.vue";
 import Profile from "@/pages/Profile.vue";
 
