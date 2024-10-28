@@ -4,4 +4,4 @@
 
 ### https://sneakers-shop-lemon.vercel.app/
 
-![preview.png](public/preview/preview.png);
+![preview.png](public/preview/preview.png)
