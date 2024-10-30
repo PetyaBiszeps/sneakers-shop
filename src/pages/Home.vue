@@ -1,5 +1,5 @@
 <script setup>
-import {inject, onMounted, reactive, ref, watch} from "vue";
+import {inject, onMounted, provide, reactive, ref, watch} from "vue";
 import axios from "axios";
 
 import CardList from "@/components/CardList.vue";
@@ -110,27 +110,33 @@ onMounted(async () => {
     isAdded: cart.value.some((cartItem) => cartItem.id === item.id)
   }));
 });
+
+provide('searchInput', {
+  onChangeSearchInput,
+})
 </script>
 
 <template>
-  <div class="flex justify-between items-center">
-    <h2 class="text-3xl font-bold mb-8">Sneakers List</h2>
+  <div class="items-center sm:flex sm:justify-between sm:flex-col md:flex-row sm:gap-5">
+    <h2 class="hidden font-bold sm:text-3xl sm:block">Sneakers List</h2>
 
-    <div class="flex gap-4">
-      <select id="" class="py-2 px-3 border rounded-md outline-none" name="" @change="onChangeSelect">
+    <div class="sm:w-full sm:flex sm:gap-5 md:w-auto">
+      <select class="py-2 px-3 border rounded-md outline-none max-sm:w-full md:w-auto" @change="onChangeSelect">
         <option value="name">By Name</option>
         <option value="price">By Lowest Price</option>
         <option value="-price">By Highest Price</option>
       </select>
-      <div class="relative">
+
+      <div class="hidden relative sm:block sm:w-full md:w-auto">
         <img alt="SearchIcon" class="absolute left-4 top-3" src="/search.svg">
-        <input class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400" placeholder="Search..." type="text"
+        <input class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400 sm:w-full" placeholder="Search..." type="search"
                @input="onChangeSearchInput">
       </div>
     </div>
   </div>
 
-  <div class="mt-10">
+  <div class="mt-5 sm:mt-10">
+    <!--  -->
     <CardList :items="items" @addToCart="onClickAddCart" @addToFavourite="addToFavourite"/>
   </div>
 </template>

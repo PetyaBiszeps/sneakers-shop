@@ -1,23 +1,31 @@
 <script setup>
-defineProps({totalPrice: Number});
+defineProps({
+  totalPrice: Number,
+  popupIconStatus: Boolean,
+});
 
-const emit = defineEmits(['openCart']);
+const emit = defineEmits(['openCart', 'popupMenuStatus', 'popupMenuClose']);
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-slate-200 px-10 py-8">
+  <header class="flex justify-between px-4 border-b border-slate-200 sm:p-8 bg-white drop-shadow-md">
 
     <router-link to="/">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4" @click="() => emit('popupMenuClose')">
         <img alt="Logo" class="w-10" src="/logo.png"/>
         <div>
           <h2 class="text-xl font-bold uppercase">Sneakers Shop</h2>
-          <p class="text-slate-400">Best sneakers shop</p>
+          <p class="text-slate-400 text-wrap">Best sneakers shop</p>
         </div>
       </div>
     </router-link>
 
-    <ul class="flex items-center gap-10">
+    <div class="hidden w-5 max-md:flex">
+      <img :src="popupIconStatus ? '/xmark.svg' : '/bars.svg'" alt="bars" class="cursor-pointer" src="/bars.svg"
+           @click="() => emit('popupMenuStatus')">
+    </div>
+
+    <ul class="hidden flex-col items-center sm:flex-row sm:gap-10 md:flex">
       <li class="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer" @click="() => emit('openCart')">
         <img alt="Cart" src="/cart.svg">
         <b>{{ totalPrice }}$</b>
@@ -33,5 +41,6 @@ const emit = defineEmits(['openCart']);
         <span>Profile</span>
       </li>
     </ul>
+
   </header>
 </template>

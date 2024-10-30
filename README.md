@@ -1,6 +1,6 @@
-# sneakers-shop
+# Sneakers Shop
 
-## Simple Shop made by Vue.Js + Tailwind CSS
+## Simple and responsive Shop made by Vue.Js + Tailwind CSS
 
 ### https://sneakers-shop-lemon.vercel.app/
 

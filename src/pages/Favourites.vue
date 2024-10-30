@@ -27,7 +27,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h1 class="mb-5">My Favourites</h1>
+  <h1 class="mb-5 text-center sm:text-left text-xl font-bold">My Favourites</h1>
   <CardList :items="favourites" is-favourite @addToCart="ItemCartStatus"/>
 </template>
 

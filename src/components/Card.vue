@@ -18,10 +18,9 @@ defineProps({
 </script>
 
 <template>
-  <div
-      class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition flex flex-col justify-between">
+  <div class="relative bg-white border border-slate-100 rounded-3xl cursor-pointer p-4 lg:p-8 hover:shadow-xl transition hover:translate-y-2">
     <div>
-      <img v-if="onClickFavourite" :src="!isFavourite ? '/like-1.svg' : '/like-2.svg'" alt="Like Empty" class="absolute top-8 left-8" @click="onClickFavourite">
+      <img v-if="onClickFavourite" :src="!isFavourite ? '/like-1.svg' : '/like-2.svg'" alt="Like Empty" class="absolute" @click="onClickFavourite">
       <img :src="imageUrl" alt="Sneaker" class="m-auto">
     </div>
 
