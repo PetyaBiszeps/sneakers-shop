@@ -1,5 +1,6 @@
 <script setup>
-import {watch, ref, provide, computed} from "vue";
+import {useCartStore} from "@/stores/cartStore.js";
+import {usePopupMenuStore} from "@/stores/popupMenuStore.js";
 
 import Header from "@/components/Header.vue";
 import PopupMenu from "@/components/PopupMenu.vue";
@@ -8,80 +9,27 @@ import Drawer from "@/components/Drawer.vue";
 // import Home from "@/pages/Home.vue";
 // import Popup from "@/components/Popup.vue";
 
-const cart = ref([]);
-const cartOpen = ref(false);
-const totalPrice = computed(() => parseFloat(cart.value.reduce((acc, item) => acc + item.price, 0).toFixed(2)));
+const cartStore = useCartStore();
+const popupMenuStore = usePopupMenuStore();
 
-
-// Cart functions
-const closeCart = () => {
-  cartOpen.value = false;
-};
-
-const openCart = () => {
-  cartOpen.value = true;
-
-  popupIcon.value = false;
-  popupMenu.value = false;
-};
-
-const addToCart = (item) => {
-  cart.value.push(item);
-  item.isAdded = true;
-};
-
-const removeFromCart = (item) => {
-  cart.value.splice(cart.value.indexOf(item), 1);
-  item.isAdded = false;
-};
-
-
-// Popup Menu functions
-const popupIcon = ref(false); // ---> Popup Icon Status
-const popupMenu = ref(false);
-
-const popupMenuStatus = () => {
-  popupIcon.value = !popupIcon.value;
-  popupMenu.value = !popupMenu.value;
-}
-
-const popupMenuClose = () => {
-  popupIcon.value = false;
-  popupMenu.value = false;
-}
-
-// Watch and Export (provide)
-watch(cart, () => {
-  localStorage.setItem('cart', JSON.stringify(cart.value));
-}, {deep: true});
-
-provide('cart', {
-  cart,
-  openCart,
-  closeCart,
-  addToCart,
-  removeFromCart
-});
-
-provide('popupMenuStatus', {
-  popupIcon,
-  popupMenu,
-  popupMenuStatus,
-  popupMenuClose,
+defineProps({
+  totalPrice: Number,
 })
 </script>
 
 <template>
-  <Drawer v-if="cartOpen" :totalPrice="totalPrice"/>
+  <Drawer v-if="cartStore.cartOpen" :totalPrice="cartStore.totalPrice"/>
 
   <!-- <popup/> -->
 
   <div class="m-auto rounded-xl shadow-xl mt-5 sm:w-4/5 sm:mt-14">
-    <Header :popupIconStatus="popupIcon" :totalPrice="totalPrice" @openCart="openCart" @popupMenuClose="popupMenuClose" @popupMenuStatus="popupMenuStatus"/>
+    <Header :totalPrice="cartStore.totalPrice" @openCart="cartStore.openCart"
+            @popupMenuClose="popupMenuStore.closePopupMenu" @popupMenuStatus="popupMenuStore.togglePopupMenu"/>
 
-    <PopupMenu v-if="popupMenu" :total-price="totalPrice" @openCart="openCart" @popupMenuStatus="popupMenuStatus"/>
+    <PopupMenu v-if="popupMenuStore.popupMenu" :total-price="cartStore.totalPrice" @openCart="cartStore.openCart"
+               @popupMenuStatus="popupMenuStore.togglePopupMenu"/>
 
-    <div v-if="closeCart" class="bg-white p-4 sm:p-10 mt-4 shadow-inner">
+    <div v-if="cartStore.closeCart" class="bg-white p-4 sm:p-10 mt-4 shadow-inner">
       <router-view></router-view>
     </div>
   </div>

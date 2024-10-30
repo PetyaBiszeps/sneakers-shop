@@ -1,4 +1,7 @@
 <script setup>
+import {useCartStore} from "@/stores/cartStore.js";
+import {useFavouriteStore} from "@/stores/favouriteStore.js";
+
 import Card from "@/components/Card.vue";
 
 defineProps({
@@ -6,7 +9,8 @@ defineProps({
   isFavourite: Boolean,
 });
 
-const emit = defineEmits(['addToFavourite', 'addToCart']);
+const cartStore = useCartStore();
+const favouriteStore = useFavouriteStore();
 </script>
 
 <template>
@@ -19,8 +23,8 @@ const emit = defineEmits(['addToFavourite', 'addToCart']);
         :is-added="false"
         :is-favourite="item.isFavourite"
         :isAdded="item.isAdded"
-        :on-click-add="() => emit('addToCart', item)"
-        :on-click-favourite="isFavourite ? null : () => emit('addToFavourite', item)"
+        :on-click-add="() => cartStore.toggleToCart(item)"
+        :on-click-favourite="isFavourite ? null : () => favouriteStore.toggleFavourites(item)"
         :price="item.price"
         :title="item.title"
     />
