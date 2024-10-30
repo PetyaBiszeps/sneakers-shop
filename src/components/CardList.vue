@@ -4,13 +4,13 @@ import {useFavouriteStore} from "@/stores/favouriteStore.js";
 
 import Card from "@/components/Card.vue";
 
+const cartStore = useCartStore();
+const favouriteStore = useFavouriteStore();
+
 defineProps({
   items: Array,
   isFavourite: Boolean,
 });
-
-const cartStore = useCartStore();
-const favouriteStore = useFavouriteStore();
 </script>
 
 <template>

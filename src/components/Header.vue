@@ -1,14 +1,14 @@
 <script setup>
-import {useItemStore} from "@/stores/itemStore.js";
+// ---> import {useItemStore} from "@/stores/itemStore.js";
 import {useCartStore} from "@/stores/cartStore.js";
 import {usePopupMenuStore} from "@/stores/popupMenuStore.js";
 
-const itemStore = useItemStore();
+// ---> const itemStore = useItemStore();
 const cartStore = useCartStore();
 const popupMenuStore = usePopupMenuStore();
 
 defineProps({
-  totalPrice: Number,
+  totalPrice: Number
 });
 </script>
 

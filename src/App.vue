@@ -1,4 +1,5 @@
 <script setup>
+// ---> import {useItemStore} from "@/stores/itemStore.js";
 import {useCartStore} from "@/stores/cartStore.js";
 import {usePopupMenuStore} from "@/stores/popupMenuStore.js";
 
@@ -7,14 +8,18 @@ import PopupMenu from "@/components/PopupMenu.vue";
 import Drawer from "@/components/Drawer.vue";
 
 // import Home from "@/pages/Home.vue";
+// import Favourites from "@/pages/Favourites.vue"
+// import Profile from "@/pages/Profile.vue"
+
 // import Popup from "@/components/Popup.vue";
 
+// ---> const itemStore = useItemStore();
 const cartStore = useCartStore();
 const popupMenuStore = usePopupMenuStore();
 
 defineProps({
   totalPrice: Number,
-})
+});
 </script>
 
 <template>

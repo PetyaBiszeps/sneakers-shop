@@ -8,7 +8,7 @@ import Info from "@/components/Info.vue";
 const cartStore = useCartStore();
 
 defineProps({
-  totalPrice: Number,
+  totalPrice: Number
 });
 </script>
 
