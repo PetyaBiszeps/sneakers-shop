@@ -8,6 +8,10 @@ import CardList from "@/components/CardList.vue";
 const itemStore = useItemStore();
 const cartStore = useCartStore();
 const favouriteStore = useFavouriteStore();
+
+defineProps({
+  price: Number
+})
 </script>
 
 <template>
@@ -16,7 +20,7 @@ const favouriteStore = useFavouriteStore();
 
     <div class="sm:w-full sm:flex sm:gap-5 md:w-auto">
       <select class="py-2 px-3 border rounded-md outline-none max-sm:w-full md:w-auto" @change="e => itemStore.onChangeSelect(e.target.value)">
-        <option value="name">By Name</option>
+        <option value="title">By Name</option>
         <option value="price">By Lowest Price</option>
         <option value="-price">By Highest Price</option>
       </select>

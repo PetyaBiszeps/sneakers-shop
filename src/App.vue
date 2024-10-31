@@ -18,7 +18,7 @@ const cartStore = useCartStore();
 const popupMenuStore = usePopupMenuStore();
 
 defineProps({
-  totalPrice: Number,
+  totalPrice: Number
 });
 </script>
 

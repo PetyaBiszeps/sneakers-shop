@@ -17,7 +17,7 @@ export const useItemStore = defineStore('itemId', () => {
             const {data} = await axios.get(`https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/items`, {params});
             items.value = data;
         } catch (e) {
-            console.log('Error while running items', e);
+            console.log('Error while fetching items', e);
         }
     };
 

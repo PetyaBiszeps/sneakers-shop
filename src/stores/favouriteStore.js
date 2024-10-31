@@ -24,9 +24,9 @@ export const useFavouriteStore = defineStore('favouriteId', () => {
         try {
             if (item.isFavourite) {
                 item.isFavourite = false;
-                await axios.delete(`https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/favourites/${item.favouriteId}`);
-
                 favourites.value = favourites.value.filter((favourite) => favourite.id !== item.id);
+
+                await axios.delete(`https://670cff85073307b4ee41e8c8.mockapi.io/API/v1/favourites/${item.favouriteId}`);
                 item.favouriteId = null;
             } else {
                 item.isFavourite = true;
