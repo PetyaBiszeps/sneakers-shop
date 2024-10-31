@@ -13,7 +13,7 @@ defineProps({
 </script>
 
 <template>
-  <header class="flex justify-between px-4 border-b border-slate-200 sm:p-8 bg-white drop-shadow-md">
+  <header class="flex justify-between px-4 border-b border-slate-200 sm:p-8 bg-white drop-shadow-md max-sm:sticky max-sm:top-0 max-sm:z-10">
 
     <router-link to="/">
       <div class="flex items-center gap-4" @click="popupMenuStore.closePopupMenu">

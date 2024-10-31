@@ -34,7 +34,6 @@ defineProps({
   </div>
 
   <div class="mt-5 sm:mt-10">
-    <!--  -->
     <CardList :items="itemStore.items" @addToCart="cartStore.toggleToCart" @addToFavourite="favouriteStore.toggleFavourites"/>
   </div>
 </template>
