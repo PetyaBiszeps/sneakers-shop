@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {ref} from "vue";
+import {ref, onMounted, watch} from "vue";
 import axios from "axios";
 
 export const useFavouriteStore = defineStore('favouriteId', () => {
@@ -41,6 +41,15 @@ export const useFavouriteStore = defineStore('favouriteId', () => {
             item.isPending = false;
         }
     };
+
+    onMounted(() => {
+        const localFavourites = localStorage.getItem('favourites');
+        favourites.value = localFavourites ? JSON.parse(localFavourites) : [];
+    });
+
+    watch(favourites, () => {
+        localStorage.setItem('favourites', JSON.stringify(favourites.value));
+    }, {deep: true});
 
     return {favourites, fetchFavourites, toggleFavourites};
 });

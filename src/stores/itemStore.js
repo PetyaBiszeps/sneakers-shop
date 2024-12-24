@@ -39,7 +39,7 @@ export const useItemStore = defineStore('itemId', () => {
     };
 
     onMounted(fetchItems);
-
+    
     watch(filters, fetchItems);
 
     return {items, filters, fetchItems, onChangeSelect, onChangeSearchInput};
